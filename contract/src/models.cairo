@@ -4,8 +4,6 @@ use starknet::ContractAddress;
 #[dojo::model]
 pub struct Player {
     #[key]
-    wallet: ContractAddress,
-    #[key]
     player_id: u64,
     username: felt252,
 }

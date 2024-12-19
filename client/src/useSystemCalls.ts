@@ -44,8 +44,8 @@ export const useSystemCalls = () => {
         // Apply an optimistic update to the state
         // this uses immer drafts to update the state
         state.applyOptimisticUpdate(transactionId, (draft) => {
-            if (draft.entities[entityId]?.models?.dojo_starter?.Moves) {
-                draft.entities[entityId].models.dojo_starter.Moves.remaining =
+            if (draft.entities[entityId]?.models?.dojo_misty_app?.Moves) {
+                draft.entities[entityId].models.dojo_misty_app.Moves.remaining =
                     remainingMoves;
             }
         });
@@ -57,7 +57,7 @@ export const useSystemCalls = () => {
             // Wait for the entity to be updated with the new state
             await state.waitForEntityChange(entityId, (entity) => {
                 return (
-                    entity?.models?.dojo_starter?.Moves?.remaining ===
+                    entity?.models?.dojo_misty_app?.Moves?.remaining ===
                     remainingMoves
                 );
             });

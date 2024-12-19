@@ -7,7 +7,7 @@ import { Account } from "starknet";
 export type IClient = Awaited<ReturnType<typeof client>>;
 
 export function client(provider: DojoProvider) {
-    // System definitions for `dojo_starter-actions` contract
+    // System definitions for `dojo_misty_app-actions` contract
     function actions() {
         const contract_name = "actions";
 
@@ -21,7 +21,7 @@ export function client(provider: DojoProvider) {
                         entrypoint: "spawn",
                         calldata: [],
                     },
-                    "dojo_starter"
+                    "dojo_misty_app"
                 );
             } catch (error) {
                 console.error("Error executing spawn:", error);
@@ -43,7 +43,7 @@ export function client(provider: DojoProvider) {
                             ),
                         ],
                     },
-                    "dojo_starter"
+                    "dojo_misty_app"
                 );
             } catch (error) {
                 console.error("Error executing spawn:", error);

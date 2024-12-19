@@ -70,7 +70,7 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
         const subscribe = async () => {
             const subscription = await sdk.subscribeEntityQuery({
                 query: new QueryBuilder<Schema>()
-                    .namespace("dojo_starter", (n) =>
+                    .namespace("dojo_misty_app", (n) =>
                         n
                             .entity("Moves", (e) =>
                                 e.eq(
@@ -119,7 +119,7 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
             try {
                 await sdk.getEntities({
                     query: new QueryBuilder<Schema>()
-                        .namespace("dojo_starter", (n) =>
+                        .namespace("dojo_misty_app", (n) =>
                             n.entity("Moves", (e) =>
                                 e.eq(
                                     "player",
@@ -314,9 +314,9 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
                             {Object.entries(entities).map(
                                 ([entityId, entity]) => {
                                     const position =
-                                        entity.models.dojo_starter.Position;
+                                        entity.models.dojo_misty_app.Position;
                                     const moves =
-                                        entity.models.dojo_starter.Moves;
+                                        entity.models.dojo_misty_app.Moves;
 
                                     return (
                                         <tr

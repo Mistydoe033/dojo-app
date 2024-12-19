@@ -72,7 +72,7 @@ interface Vec2 {
  * Type representing the complete schema of game models.
  */
 type Schema = {
-    dojo_starter: {
+    dojo_misty_app: {
         Moves: Moves;
         DirectionsAvailable: DirectionsAvailable;
         Position: Position;
@@ -84,14 +84,14 @@ type Schema = {
  * Enum representing model identifiers in the format "namespace-modelName".
  */
 enum Models {
-    Moves = "dojo_starter-Moves",
-    DirectionsAvailable = "dojo_starter-DirectionsAvailable",
-    Position = "dojo_starter-Position",
-    Player = "dojo_starter-Player",
+    Moves = "dojo_misty_app-Moves",
+    DirectionsAvailable = "dojo_misty_app-DirectionsAvailable",
+    Position = "dojo_misty_app-Position",
+    Player = "dojo_misty_app-Player",
 }
 
 const schema: Schema = {
-    dojo_starter: {
+    dojo_misty_app: {
         Moves: {
             fieldOrder: ["player", "remaining", "last_direction", "can_move"],
             player: "",

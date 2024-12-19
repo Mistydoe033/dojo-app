@@ -71,7 +71,7 @@ Happy coding!
 
 # Seth Notes for Dojo Starter
 
-## Steps for Development and Deployment
+## Steps for Development and Deployment on local host
 
 1. **Import Required Models**  
    Ensure you import all necessary models in the parent module of your function.
@@ -84,6 +84,7 @@ Happy coding!
 
 4. **Start the Local Environment**  
    Run the local development environment with: `katana --dev`
+   and make sure torii is also running with `torii --world {world_hash}`
 
 5. **Execute Actions**  
    Execute your new action using: `sozo execute actions {function_name} -c {params}`
@@ -108,3 +109,18 @@ Happy coding!
      
      `sozo model get Player 1`
 
+# Deployment on Testnet
+
+make sure you have a starknet account and the account has been deployed
+
+then use that account addresss and private key in the `.env.sepolia` file
+
+to activate the right env vars use `source .env.sepolia`
+
+then you can use `sozo --profile sepolia migrate` to deploy it,
+or use the script made for testnet `./deploy_sepolia.sh`
+
+then to execute actions on the world use a command like this
+`sozo --profile sepolia execute actions update_username -c 1,sstr:"misty" --wait --receipt`
+
+to get data from the deployed world you can use `sozo --profile sepolia model get Player 1`
