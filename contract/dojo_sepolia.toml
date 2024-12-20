@@ -15,12 +15,16 @@ telegram = "https://t.me/dojoengine"
 [namespace]
 default = "dojo_misty_app"
 
-[env]
-rpc_url = "http://localhost:5050/"
-# Default account for katana with seed = 0
-account_address = "0x127fd5f1fe78a71f8bcd1fec63e3fe2f0486b6ecd5c86a0466c3a21fa5cfcec"
-private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
-#world_address = "0x06171ed98331e849d6084bf2b3e3186a7ddf35574dd68cab4691053ee8ab69d7" # Uncomment and update this line with your world address.
-
 [writers]
-"dojo_misty_app" = ["dojo_misty_app-actions"]
+# This means that any model in the `dojo_misty_app` namespace can only be written to by the `dojo_misty_app-actions` contract.
+"dojo_misty_app" = ["dojo_misty_app-actions"] 
+
+"dojo_misty_app-Account" = ["dojo_misty_app-actions"]
+
+[env]
+rpc_url = "https://api.cartridge.gg/x/starknet/sepolia"
+# Default account for katana with seed = 0
+account_address = "0x054cb935d86d80b5a0a6e756edf448ab33876d01dd2b07a2a4e63a41e06d0ef5"
+private_key = "0x4ddeda54f31eb1cc9f085d1e9caed8b2796037c5fbbe4c7606cea509df1b364"
+world_address = "0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719f5bbcde3b9e732bc7"
+world_block = 402619

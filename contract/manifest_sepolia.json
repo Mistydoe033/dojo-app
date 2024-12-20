@@ -1,7 +1,7 @@
 {
   "world": {
     "class_hash": "0x45575a88cc5cef1e444c77ce60b7b4c9e73a01cbbe20926d5a4c72a94011410",
-    "address": "0x525177c8afe8680d7ad1da30ca183e482cfcd6404c1e09d83fd3fa2994fd4b8",
+    "address": "0x6502dbe1c5627f9120731e161dd4d9b7d02897b5ff719f5bbcde3b9e732bc7",
     "seed": "dojo_misty_app",
     "name": "Dojo starter",
     "entrypoints": [
@@ -1252,8 +1252,8 @@
   },
   "contracts": [
     {
-      "address": "0x50d14b9b731b793501bed2ee9d1ba49a81644bd53b27ab23972f153833288c6",
-      "class_hash": "0xf8ec738b229cf6cb53326ea7749fe9e7192822aeb08ea7e46576729e9cf1b0",
+      "address": "0x49eb0b7a071807f227d2795aaa92da88b3e110048d5396ba32c7e8fb4daecad",
+      "class_hash": "0x4993bb1c93eaf3b62eb1621e98163a03435f9b4289145e4613679cfa3d97009",
       "abi": [
         {
           "type": "impl",
@@ -1311,28 +1311,20 @@
           "interface_name": "dojo_misty_app::systems::actions::IActions"
         },
         {
-          "type": "enum",
-          "name": "dojo_misty_app::models::Direction",
-          "variants": [
+          "type": "struct",
+          "name": "dojo_misty_app::models::Account",
+          "members": [
             {
-              "name": "None",
-              "type": "()"
+              "name": "wallet",
+              "type": "core::starknet::contract_address::ContractAddress"
             },
             {
-              "name": "Left",
-              "type": "()"
+              "name": "username",
+              "type": "core::felt252"
             },
             {
-              "name": "Right",
-              "type": "()"
-            },
-            {
-              "name": "Up",
-              "type": "()"
-            },
-            {
-              "name": "Down",
-              "type": "()"
+              "name": "player_age",
+              "type": "core::integer::u64"
             }
           ]
         },
@@ -1342,18 +1334,19 @@
           "items": [
             {
               "type": "function",
-              "name": "spawn",
-              "inputs": [],
-              "outputs": [],
-              "state_mutability": "external"
-            },
-            {
-              "type": "function",
-              "name": "move",
+              "name": "new_account",
               "inputs": [
                 {
-                  "name": "direction",
-                  "type": "dojo_misty_app::models::Direction"
+                  "name": "wallet",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
+                  "name": "username",
+                  "type": "core::felt252"
+                },
+                {
+                  "name": "player_age",
+                  "type": "core::integer::u64"
                 }
               ],
               "outputs": [],
@@ -1361,18 +1354,22 @@
             },
             {
               "type": "function",
-              "name": "update_username",
+              "name": "get_account_for_wallet",
               "inputs": [
                 {
-                  "name": "player_id",
-                  "type": "core::integer::u64"
+                  "name": "wallet",
+                  "type": "core::starknet::contract_address::ContractAddress"
                 },
                 {
-                  "name": "new_username",
+                  "name": "username",
                   "type": "core::felt252"
                 }
               ],
-              "outputs": [],
+              "outputs": [
+                {
+                  "type": "dojo_misty_app::models::Account"
+                }
+              ],
               "state_mutability": "external"
             }
           ]
@@ -1494,11 +1491,10 @@
       ],
       "init_calldata": [],
       "tag": "dojo_misty_app-actions",
-      "selector": "0x7a1c71029f2d0b38e3ac89b09931d08b6e48417e079c289ff19a8698d0cba33",
+      "selector": "0x6493891dae48934ef2beb8f543116e92dd68dd5048fee29484490490970d3f6",
       "systems": [
-        "spawn",
-        "move",
-        "update_username",
+        "new_account",
+        "get_account_for_wallet",
         "upgrade"
       ]
     }
@@ -1506,35 +1502,10 @@
   "models": [
     {
       "members": [],
-      "class_hash": "0x7deb48ccf95cc441a0489cfefdae54aeb6f8ec462ba13ff25e23f080e66cc2f",
-      "tag": "dojo_misty_app-DirectionsAvailable",
-      "selector": "0x77844f1facb51e60e546a9832d56c6bd04fa23be4fd5b57290caae5e9a3c1e4"
-    },
-    {
-      "members": [],
-      "class_hash": "0x70edf8f3be0b118e78f856f3ea9ebb652cba3684abaf7f299bfa6f93bf907c9",
-      "tag": "dojo_misty_app-Moves",
-      "selector": "0x2a29373f1af8348bd366a990eb3a342ef2cbe5e85160539eaca3441a673f468"
-    },
-    {
-      "members": [],
-      "class_hash": "0x7efe9484be781a2e55fc14c2ec674d7cd31e5510fc2f7017a6ccd0b969224a",
-      "tag": "dojo_misty_app-Player",
-      "selector": "0x1cccb05d982525914bcdce99f0af51556dcb8d9f0e2317c0ad0221d13a809f9"
-    },
-    {
-      "members": [],
-      "class_hash": "0x2283c68ecba5c60bbbbd3b00659808a02244468e41a1d2cdba1312d65b83594",
-      "tag": "dojo_misty_app-Position",
-      "selector": "0x2ac8b4c190f7031b9fc44312e6b047a1dce0b3f2957c33a935ca7846a46dd5b"
+      "class_hash": "0x7483b35b1ec8be987348aa7e84ec7d541f1a32205c0813da3a87c9f0974635c",
+      "tag": "dojo_misty_app-Account",
+      "selector": "0x1fed2b8e1f387b325a25533f76de8897a456af9d698f4db3703efcf3f1f1e8d"
     }
   ],
-  "events": [
-    {
-      "members": [],
-      "class_hash": "0x5be0a05a5df3bd3b4fc17f8b1feb395cb463ced20ea41d4fbb9b86a4d7efc66",
-      "tag": "dojo_misty_app-Moved",
-      "selector": "0x504403e5c02b6442527721fc464d9ea5fc8f1ee600ab5ccd5c0845d36fd45f1"
-    }
-  ]
+  "events": []
 }
