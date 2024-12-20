@@ -26,8 +26,5 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
 # This means that any model in the `dojo_starter` namespace can only be written to by the `dojo_starter-actions` contract.
 "dojo_starter" = ["dojo_starter-actions"] 
  
-# More specific fine-grained authorization 
-# This means that only the `dojo_starter-DirectionsAvailable` model can be written to by the `dojo_starter-actions` contract.
-"dojo_starter-DirectionsAvailable" = ["dojo_starter-actions"]
 
-"dojo_starter-Player" = ["dojo_starter-actions"]
+"dojo_starter-Account" = ["dojo_starter-actions"]

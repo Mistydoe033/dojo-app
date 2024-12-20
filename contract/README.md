@@ -124,3 +124,21 @@ then to execute actions on the world use a command like this
 `sozo --profile sepolia execute actions update_username -c 1,sstr:"misty" --wait --receipt`
 
 to get data from the deployed world you can use `sozo --profile sepolia model get Player 1`
+
+
+
+# React Notes
+
+after making changes to the contract run `DOJO_MANIFEST_PATH="../contract/Scarb.toml" sozo build --typescript --bindings-output ./src/` in the frontend directory 
+
+# Torii connecting to sepolia 
+
+`torii -w 0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719f5bbcde3b9e732bc7 --rpc https://api.cartridge.gg/x/starknet/sepolia --indexing.world_block 402610 --http.cors_origins '*' --http.addr 0.0.0.0`
+
+# Create torii service 
+
+use `slot auth login` to login to cartridge
+
+after that use `slot deployments create <Project Name> katana`
+
+then use `slot deployments create dojo-misty-app torii --world 0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719f5bbcde3b9e732bc7` to create torii service 

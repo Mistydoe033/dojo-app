@@ -1,7 +1,17 @@
 {
-    "files": [],
-    "references": [
-        { "path": "./tsconfig.app.json" },
-        { "path": "./tsconfig.node.json" }
+    "compilerOptions": {
+        "jsx": "react-jsx", // For React 17+
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "target": "es2020", // Update target to es2020 or esnext
+        "lib": [
+            "dom", // Include DOM if working with browser APIs
+            "es2020" // Add es2020 to support BigInt and modern features
+        ]
+    },
+    "include": [
+        "src/**/*"
     ]
 }

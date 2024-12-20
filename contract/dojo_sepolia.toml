@@ -18,12 +18,8 @@ default = "dojo_misty_app"
 [writers]
 # This means that any model in the `dojo_misty_app` namespace can only be written to by the `dojo_misty_app-actions` contract.
 "dojo_misty_app" = ["dojo_misty_app-actions"] 
- 
-# More specific fine-grained authorization 
-# This means that only the `dojo_misty_app-DirectionsAvailable` model can be written to by the `dojo_misty_app-actions` contract.
-"dojo_misty_app-DirectionsAvailable" = ["dojo_misty_app-actions"]
 
-"dojo_misty_app-Player" = ["dojo_misty_app-actions"]
+"dojo_misty_app-Account" = ["dojo_misty_app-actions"]
 
 [env]
 rpc_url = "https://api.cartridge.gg/x/starknet/sepolia"

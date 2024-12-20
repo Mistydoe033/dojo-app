@@ -1,16 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App.tsx";
+import App from "./App";
 
 import "./index.css";
 import { init } from "@dojoengine/sdk";
-import { Schema, schema } from "./bindings.ts";
-import { dojoConfig } from "../dojoConfig.ts";
-import { DojoContextProvider } from "./DojoContext.tsx";
-import { setupBurnerManager } from "@dojoengine/create-burner";
+import { Schema, schema } from "./bindings";
+import { dojoConfig } from "../dojoConfig";
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 
 /**
  * Initializes and bootstraps the Dojo application.
@@ -19,19 +17,15 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
  * @throws {Error} If initialization fails
  */
 
-const client = new ApolloClient({
-  uri: 'http://localhost:8080/graphql', // Replace with your GraphQL endpoint
-  cache: new InMemoryCache(),
-});
 
 async function main() {
     const sdk = await init<Schema>(
         {
             client: {
-                rpcUrl: dojoConfig.rpcUrl,
-                toriiUrl: dojoConfig.toriiUrl,
+                rpcUrl: "https://api.cartridge.gg/x/starknet/sepolia",
+                toriiUrl: "https://api.cartridge.gg/x/dojo-misty-app/torii",
                 relayUrl: dojoConfig.relayUrl,
-                worldAddress: dojoConfig.manifest.world.address,
+                worldAddress: "0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719",
             },
             domain: {
                 name: "WORLD_NAME",
@@ -44,14 +38,8 @@ async function main() {
     );
 
     createRoot(document.getElementById("root")!).render(
-        <StrictMode>
-            <DojoContextProvider
-                burnerManager={await setupBurnerManager(dojoConfig)}
-            >
-                 <ApolloProvider client={client}>
+        <StrictMode>      
                     <App sdk={sdk} />
-                    </ApolloProvider>
-            </DojoContextProvider>
         </StrictMode>
     );
 }
