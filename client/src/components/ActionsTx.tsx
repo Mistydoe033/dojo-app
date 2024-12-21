@@ -9,6 +9,10 @@ import {
     Typography,
     Link,
     Alert,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
 } from '@mui/material';
 
 import ControllerConnector from '@cartridge/connector/controller';
@@ -23,9 +27,14 @@ export const Tx = () => {
 
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [txnHash, setTxnHash] = useState<string>();
-    const [username, setUsername] = useState<string>('');
+    const [newUserUsername, setNewUserUsername] = useState<string>(''); // Username for account creation
+    const [username, setUsername] = useState<string>(''); // Username for fetching account details
     const [playerAge, setPlayerAge] = useState<number>(0);
     const [accountDetails, setAccountDetails] = useState<any>(null);
+
+    // Dialog state and dialog username
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogUsername, setDialogUsername] = useState<string>(''); // Username for dialog input
 
     const controller = connectors[0] as ControllerConnector;
     const explorer = useExplorer();
@@ -33,7 +42,7 @@ export const Tx = () => {
     const web3 = new Web3(window.ethereum);
 
     const execute = useCallback(async () => {
-        if (!account || !username || !playerAge) return;
+        if (!account || !newUserUsername || !playerAge) return;
         setSubmitted(true);
         setTxnHash(undefined);
         try {
@@ -42,9 +51,9 @@ export const Tx = () => {
                     contractAddress: ACTIONS_CONTRACT,
                     entrypoint: 'new_account',
                     calldata: [
-                        account.address, 
-                        username, 
-                        playerAge, 
+                        account.address,
+                        newUserUsername, // Use newUserUsername for account creation
+                        playerAge,
                     ],
                 },
             ]);
@@ -54,19 +63,19 @@ export const Tx = () => {
         } finally {
             setSubmitted(false);
         }
-    }, [account, username, playerAge]);
+    }, [account, newUserUsername, playerAge]);
 
     const fetchAccountDetails = useCallback(async () => {
-        if (!account || !username) return;
+        if (!account || !dialogUsername) return; // Use dialogUsername for fetching account details
         try {
             const result = await account.callContract({
                 contractAddress: ACTIONS_CONTRACT,
                 entrypoint: 'get_account_for_wallet',
-                calldata: [account.address, username],
+                calldata: [account.address, dialogUsername], // Pass dialogUsername here
             });
 
             // Convert the hex username to a string
-            const hexToString = (hex:any) => {
+            const hexToString = (hex: any) => {
                 return web3.utils.hexToUtf8(hex);
             };
             console.log('Full result:', result);
@@ -79,17 +88,26 @@ export const Tx = () => {
         } catch (e) {
             console.error('Error fetching account details:', e);
         }
-    }, [account, username]);
+    }, [account, dialogUsername]); // Watch dialogUsername
 
     useEffect(() => {
         if (!account || !address) return;
-        controller.username()?.then((n) => setUsername(n));
+        controller.username()?.then((n) => setNewUserUsername(n)); // Set the initial value for newUserUsername
     }, [address, controller, account]);
 
     if (!account) return null;
 
+    const handleDialogClose = () => {
+        setDialogOpen(false);
+    };
+
+    const handleDialogSubmit = () => {
+        fetchAccountDetails();
+        handleDialogClose();
+    };
+
     return (
-        <Container >
+        <Container>
             <Box mt={4} p={5} boxShadow={3} borderRadius={2} bgcolor="background.paper">
                 <Typography variant="h4" gutterBottom>
                     Create New Account
@@ -99,8 +117,8 @@ export const Tx = () => {
                         fullWidth
                         label="Username"
                         variant="outlined"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={newUserUsername} // Use newUserUsername for account creation
+                        onChange={(e) => setNewUserUsername(e.target.value)}
                         disabled={submitted}
                     />
                 </Box>
@@ -119,7 +137,7 @@ export const Tx = () => {
                     variant="contained"
                     color="primary"
                     onClick={execute}
-                    disabled={submitted || !username || !playerAge}
+                    disabled={submitted || !newUserUsername || !playerAge}
                     fullWidth
                 >
                     {submitted ? <CircularProgress size={24} /> : 'Create Account'}
@@ -128,12 +146,36 @@ export const Tx = () => {
                     <Button
                         variant="outlined"
                         color="secondary"
-                        onClick={fetchAccountDetails}
+                        onClick={() => setDialogOpen(true)}
                         fullWidth
                     >
                         Fetch Account Details from Chain
                     </Button>
                 </Box>
+
+                {/* Dialog for username input */}
+                <Dialog open={dialogOpen} onClose={handleDialogClose}>
+                    <DialogTitle>Enter Username</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            sx={{mt:3}}
+                            fullWidth
+                            label="Username"
+                            variant="outlined"
+                            value={dialogUsername} // Use dialogUsername here
+                            onChange={(e) => setDialogUsername(e.target.value)}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDialogClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleDialogSubmit} color="primary">
+                            Submit
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
                 {accountDetails && (
                     <Box mt={2}>
                         <Typography variant="h6">Account Details:</Typography>
@@ -142,6 +184,7 @@ export const Tx = () => {
                         <Typography>Player Age: {accountDetails.playerAge}</Typography>
                     </Box>
                 )}
+
                 {txnHash && (
                     <Box mt={2}>
                         <Alert severity="success">
