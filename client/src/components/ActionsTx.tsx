@@ -14,6 +14,7 @@ import {
     DialogContent,
     DialogTitle,
 } from '@mui/material';
+import { toast } from 'react-toastify';
 
 import ControllerConnector from '@cartridge/connector/controller';
 import Web3 from 'web3';
@@ -60,6 +61,7 @@ export const Tx = () => {
             setTxnHash(result.transaction_hash);
         } catch (e) {
             console.error(e);
+            toast.error('Error creating account.');
         } finally {
             setSubmitted(false);
         }
@@ -78,15 +80,26 @@ export const Tx = () => {
             const hexToString = (hex: any) => {
                 return web3.utils.hexToUtf8(hex);
             };
+
+            const playerAge = parseInt(result[2], 16);
+            console.log('Age:', playerAge);
+           
+
+            if (playerAge === 0) {
+                console.log('Player age is 0, triggering error toast.');
+                toast.error('Account does not exist or invalid data (Player age is 0).');
+                return; // Exit early since the account is invalid
+            }
             console.log('Full result:', result);
 
             setAccountDetails({
                 wallet: result[0],
                 username: hexToString(result[1]), // Convert the hex username to string
-                playerAge: parseInt(result[2], 16),
+                playerAge: playerAge,
             });
         } catch (e) {
             console.error('Error fetching account details:', e);
+            toast.error('Error fetching account details.');
         }
     }, [account, dialogUsername]); // Watch dialogUsername
 
