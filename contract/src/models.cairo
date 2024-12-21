@@ -10,5 +10,3 @@ pub struct Account {
     player_age: u64,
     
 }
-
-
