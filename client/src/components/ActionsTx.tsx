@@ -106,6 +106,11 @@ export const Tx = () => {
     }, [account, dialogUsername]); // Watch dialogUsername
 
     useEffect(() => {
+        setAccountDetails({
+            wallet: null,
+            username: null, // Convert the hex username to string
+            playerAge: null,
+        });
         if (!account || !address) return;
         controller.username()?.then((n) => setNewUserUsername(n)); // Set the initial value for newUserUsername
     }, [address, controller, account]);
@@ -193,7 +198,7 @@ export const Tx = () => {
 
                 {accountDetails && (
                     <Box mt={2}>
-                        <Typography variant="h6">Account Details:</Typography>
+                        <Typography variant="h6">On Chain Account Details:</Typography>
                         <Typography>Wallet: {accountDetails.wallet}</Typography>
                         <Typography>Username: {accountDetails.username}</Typography>
                         <Typography>Player Age: {accountDetails.playerAge}</Typography>
