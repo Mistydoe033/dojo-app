@@ -2,6 +2,7 @@ import { QueryBuilder, SDK, createDojoStore } from "@dojoengine/sdk";
 import { Models, Schema } from "./bindings";
 import { StarknetProvider } from './context/StarknetProvider'
 import { ConnectWallet } from './context/ConnectWallet'
+import { Tx } from "./components/ActionsTx";
 
 /**
  * Global store for managing Dojo game state.
@@ -19,7 +20,7 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
     return (
         <StarknetProvider>
             <ConnectWallet />
-            
+            <Tx />
         </StarknetProvider>
     )
 }
