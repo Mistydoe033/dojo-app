@@ -59,6 +59,7 @@ export const Tx = () => {
                 },
             ]);
             setTxnHash(result.transaction_hash);
+            toast.success('Account created successfully!');
         } catch (e) {
             console.error(e);
             toast.error('Error creating account.');
@@ -97,6 +98,7 @@ export const Tx = () => {
                 username: hexToString(result[1]), // Convert the hex username to string
                 playerAge: playerAge,
             });
+            toast.success('Account details fetched successfully!');
         } catch (e) {
             console.error('Error fetching account details:', e);
             toast.error('Error fetching account details.');
