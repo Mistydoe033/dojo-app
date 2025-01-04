@@ -3,6 +3,8 @@ import { Models, Schema } from "./bindings";
 import { StarknetProvider } from './context/StarknetProvider'
 import { ConnectWallet } from './context/ConnectWallet'
 import { Tx } from "./components/ActionsTx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /**
  * Global store for managing Dojo game state.
@@ -21,6 +23,7 @@ function App({ sdk }: { sdk: SDK<Schema> }) {
         <StarknetProvider>
             <ConnectWallet />
             <Tx />
+            <ToastContainer />
         </StarknetProvider>
     )
 }

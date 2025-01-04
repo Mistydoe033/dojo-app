@@ -4,7 +4,49 @@ This guide provides step-by-step instructions for setting up Dojo, deploying a w
 
 ## Prerequisites
 
-1. Install the latest Dojo:
+1. Install the latest `curl`, `asdf` & `Dojo`:
+
+### Homebrew
+
+Install `asdf` using Homebrew:
+
+```bash
+brew install asdf
+```
+
+### Dojoup
+
+```bash
+curl -L https://install.dojoengine.org | bash
+```
+Next run 
+
+```bash
+source /home/misty/.bashrc
+dojoup
+```
+### Bash and Git
+
+If you prefer to install via Git, clone the `asdf` repository:
+
+```bash
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+```
+
+Next, add the following lines to your `~/.bashrc`:
+
+```bash
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
+```
+
+Then update terminal env vars with 
+
+```bash
+source ~/.bashrc
+```
+
+Finally, install and set up `Dojo` with `asdf`:
 
 ```bash
 asdf plugin add dojo https://github.com/dojoengine/asdf-dojo
@@ -18,8 +60,6 @@ asdf global dojo latest
 torii --version
 ```
 
-If Torii is working, proceed to update all references to the namespace (currently `dojo_misty_app`).
-
 ## Deploying Your World to Sepolia
 
 1. Navigate to the `contract` directory:
@@ -28,8 +68,9 @@ If Torii is working, proceed to update all references to the namespace (currentl
 cd contract
 ```
 
-2. Update the `.env` file with the following:
+2. Update the `.env.sepolia` file with the following:
    - A deployed StarkNet/Braavos account address (an account that is deployed has made at least one send transaction).
+   - StarkNet Faucet [https://starknet-faucet.vercel.app/](https://starknet-faucet.vercel.app/)
    - Its private key from either the Braavos wallet or from your account at [https://snaps.consensys.io/starknet](https://snaps.consensys.io/starknet).
 
 
@@ -37,8 +78,10 @@ cd contract
 
 4. Deploy your world:
 
+before deploying make sure versions in Scarb.toml match `torii --version`
+
 ```bash
-./deploy_sepolia.sh
+bash ./deploy_sepolia.sh
 ```
 
 5. Add the world address returned by the script to the `dojo_sepolia.toml` file.
@@ -46,8 +89,12 @@ cd contract
 6. Locate the world block for the deployment on StarkScan:
 
 [https://sepolia.starkscan.co/](https://sepolia.starkscan.co/)
+   - add world address to starkscan 
+   - navigate to events 
+   - navigate to WorldSpawned event 
+   - copy Block Number
 
-7. Add the world block to the `dojo_sepolia.toml` file.
+7. Add the Block Number to the `dojo_sepolia.toml` file.
 
 8. After all values are updated, use the following command to update deployments on the testnet:
 
@@ -77,9 +124,12 @@ torii -w {world_address} \
 
 1. To deploy Torii persistently (so data is not wiped on terminal close), follow the guide at [https://docs.cartridge.gg/slot/getting-started](https://docs.cartridge.gg/slot/getting-started).
 
+   - if not using a passkey download bitwarden and set up account[https://bitwarden.com/download/](https://bitwarden.com/download/)
+
 2. Navigate to the `client` directory:
 
 ```bash
+cd ../
 cd client
 ```
 
