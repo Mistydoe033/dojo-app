@@ -6,7 +6,7 @@ This guide provides step-by-step instructions for setting up Dojo, deploying a w
 
 1. Install the latest `curl`, `asdf` & `Dojo`:
 
-### Homebrew
+### (Method 1) Homebrew install 
 
 Install `asdf` using Homebrew:
 
@@ -14,7 +14,7 @@ Install `asdf` using Homebrew:
 brew install asdf
 ```
 
-### Dojoup
+### (Method 2) Dojoup
 
 ```bash
 curl -L https://install.dojoengine.org | bash
@@ -25,7 +25,7 @@ Next run
 source /home/misty/.bashrc
 dojoup
 ```
-### Bash and Git
+### (Method 3) Bash, Git and asdf
 
 If you prefer to install via Git, clone the `asdf` repository:
 
@@ -33,7 +33,7 @@ If you prefer to install via Git, clone the `asdf` repository:
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
 ```
 
-Next, add the following lines to your `~/.bashrc`:
+Next, add the following lines to your `~/.bashrc`/ or terminal rc file: 
 
 ```bash
 . "$HOME/.asdf/asdf.sh"
@@ -54,13 +54,13 @@ asdf install dojo latest
 asdf global dojo latest
 ```
 
-2. Verify that Torii is working:
+2. Once installed verify that Torii is working:
 
 ```bash
 torii --version
 ```
 
-## Deploying Your World to Sepolia
+## Deploying Your World to Sepolia (first deploy)
 
 1. Navigate to the `contract` directory:
 
@@ -96,13 +96,15 @@ bash ./deploy_sepolia.sh
 
 7. Add the Block Number to the `dojo_sepolia.toml` file.
 
+## Subsequent deploys 
+
 8. After all values are updated, use the following command to update deployments on the testnet:
 
 ```bash
 sozo --profile sepolia migrate
 ```
 
-## Running Torii and the Client Locally
+## Running Torii and the Client Locally (only for testing)
 
 1. Open a new terminal and run Torii:
 
@@ -120,7 +122,7 @@ torii -w {world_address} \
 
 
 
-## Updating Torii to slot and Running the Client
+## Updating Torii to slot and Running the Client (for new worlds)
 
 1. To deploy Torii persistently (so data is not wiped on terminal close), follow the guide at [https://docs.cartridge.gg/slot/getting-started](https://docs.cartridge.gg/slot/getting-started).
 
