@@ -23,9 +23,9 @@ async function main() {
         {
             client: {
                 rpcUrl: "https://api.cartridge.gg/x/starknet/sepolia",
-                toriiUrl: "https://api.cartridge.gg/x/dojo-misty-app/torii",
+                toriiUrl: "https://api.cartridge.gg/x/henry-world/torii",
                 relayUrl: dojoConfig.relayUrl,
-                worldAddress: "0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719",
+                worldAddress: "0x0733bae0d1fb83a998b41081498a17d1e21efb906981c7a89709256af0143b74",
             },
             domain: {
                 name: "WORLD_NAME",

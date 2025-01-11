@@ -151,3 +151,9 @@ npm i
 ```bash
 npm run dev
 ```
+
+## If you get a SSL/TLS error 
+
+1. use ngrok to get around SSL error 
+
+`ngrok http {http_port_of_server}`

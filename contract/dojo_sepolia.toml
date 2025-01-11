@@ -4,7 +4,7 @@ description = "The official Dojo Starter guide, the quickest and most streamline
 cover_uri = "file://assets/cover.png"
 icon_uri = "file://assets/icon.png"
 website = "https://github.com/dojoengine/dojo-starter"
-seed = "dojo_misty_app"
+seed = "henry_123"
 
 [world.socials]
 x = "https://x.com/ohayo_dojo"
@@ -13,18 +13,18 @@ github = "https://github.com/dojoengine/dojo-starter"
 telegram = "https://t.me/dojoengine"
 
 [namespace]
-default = "dojo_misty_app"
+default = "henry_123"
 
 [writers]
 # This means that any model in the `dojo_misty_app` namespace can only be written to by the `dojo_misty_app-actions` contract.
-"dojo_misty_app" = ["dojo_misty_app-actions"] 
+"henry-world" = ["dojo_misty_app-actions"] 
 
-"dojo_misty_app-Account" = ["dojo_misty_app-actions"]
+"henry-world-Account" = ["dojo_misty_app-actions"]
 
 [env]
 rpc_url = "https://api.cartridge.gg/x/starknet/sepolia"
 # Default account for katana with seed = 0
 account_address = "0x054cb935d86d80b5a0a6e756edf448ab33876d01dd2b07a2a4e63a41e06d0ef5"
 private_key = "0x4ddeda54f31eb1cc9f085d1e9caed8b2796037c5fbbe4c7606cea509df1b364"
-world_address = "0x006502dbe1c5627f9120731e161dd4d9b7d02897b5ff719f5bbcde3b9e732bc7"
-world_block = 402619
+world_address = "0x0733bae0d1fb83a998b41081498a17d1e21efb906981c7a89709256af0143b74"
+world_block = 434464
