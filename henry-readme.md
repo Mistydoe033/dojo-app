@@ -14,18 +14,7 @@ Install `asdf` using Homebrew:
 brew install asdf
 ```
 
-### (Method 2) Dojoup
-
-```bash
-curl -L https://install.dojoengine.org | bash
-```
-Next run 
-
-```bash
-source /home/misty/.bashrc
-dojoup
-```
-### (Method 3) Bash, Git and asdf
+### (Method 2) Bash, Git and asdf 
 
 If you prefer to install via Git, clone the `asdf` repository:
 
@@ -46,7 +35,10 @@ Then update terminal env vars with
 source ~/.bashrc
 ```
 
-Finally, install and set up `Dojo` with `asdf`:
+### For Method 1 & 2 
+
+
+Install and set up `Dojo` with `asdf`:
 
 ```bash
 asdf plugin add dojo https://github.com/dojoengine/asdf-dojo
@@ -54,12 +46,27 @@ asdf install dojo latest
 asdf global dojo latest
 ```
 
-2. Once installed verify that Torii is working:
+
+
+### (Method 3) Dojoup
+
+
+```bash
+curl -L https://install.dojoengine.org | bash
+```
+Next run 
+
+```bash
+source /home/misty/.bashrc
+dojoup
+```
+## Once one of the Methods are done 
+
+verify that Torii is working:
 
 ```bash
 torii --version
 ```
-
 ## Deploying Your World to Sepolia (first deploy)
 
 1. Navigate to the `contract` directory:
