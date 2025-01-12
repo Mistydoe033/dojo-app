@@ -164,3 +164,15 @@ npm run dev
 1. use ngrok to get around SSL error 
 
 `ngrok http {http_port_of_server}`
+
+
+
+# to deploy a new world 
+
+In `dojo_sepolia.toml`
+
+Change the [seed, namespace, writers]
+
+In `Scarb.toml`
+
+Change the name
