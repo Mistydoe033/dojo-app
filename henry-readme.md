@@ -133,6 +133,10 @@ torii -w {world_address} \
 
 1. To deploy Torii persistently (so data is not wiped on terminal close), follow the guide at [https://docs.cartridge.gg/slot/getting-started](https://docs.cartridge.gg/slot/getting-started).
 
+   - # Slot docs doesn't specify but on dojo docs it does:
+
+      `slot deployments create <PROJECT_NAME> torii --world <WORLD_ADDRESS> --rpc <RPC_URL>`
+
    - if not using a passkey download bitwarden and set up account[https://bitwarden.com/download/](https://bitwarden.com/download/)
 
 2. Navigate to the `client` directory:
@@ -148,6 +152,8 @@ cd client
    - Replace `{name-of-project}` with the name from your Slot Torii deployment.
 
 3.1. Go to `ActionsTx.tsx` and add the deployed contract address as the `ACTIONS_CONTRACT`.
+
+   - get the contract address by running `sozo inspect --profile sepolia` in the contract directory
 
 4. Install dependencies and Start the React app:
 
@@ -171,8 +177,5 @@ npm run dev
 
 In `dojo_sepolia.toml`
 
-Change the [seed, namespace, writers]
+Change the [seed]
 
-In `Scarb.toml`
-
-Change the name

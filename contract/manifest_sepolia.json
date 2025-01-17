@@ -1,8 +1,8 @@
 {
   "world": {
     "class_hash": "0x45575a88cc5cef1e444c77ce60b7b4c9e73a01cbbe20926d5a4c72a94011410",
-    "address": "0x733bae0d1fb83a998b41081498a17d1e21efb906981c7a89709256af0143b74",
-    "seed": "henry_123",
+    "address": "0x1f0bfb923b688e9fb7e8177867c5dd22ff6e89a5471f18d8c45158fa8a4c717",
+    "seed": "dojo_misty_world",
     "name": "Dojo starter",
     "entrypoints": [
       "uuid",
@@ -1252,7 +1252,7 @@
   },
   "contracts": [
     {
-      "address": "0x15f3a2858d8040705884233cd6e5c71e15b64770877675001e205d03e0a6682",
+      "address": "0x4be03469dda47b559391cdedb6bc68f420656375305209c299c67b5c053c8c9",
       "class_hash": "0x4993bb1c93eaf3b62eb1621e98163a03435f9b4289145e4613679cfa3d97009",
       "abi": [
         {
@@ -1490,8 +1490,8 @@
         }
       ],
       "init_calldata": [],
-      "tag": "henry_123-actions",
-      "selector": "0x6b295d2874b76cc6731a69ff438cc34ae98fbce47b52f66f8d5326b59f5ae03",
+      "tag": "dojo_misty_app-actions",
+      "selector": "0x6493891dae48934ef2beb8f543116e92dd68dd5048fee29484490490970d3f6",
       "systems": [
         "new_account",
         "get_account_for_wallet",
@@ -1503,8 +1503,8 @@
     {
       "members": [],
       "class_hash": "0x7483b35b1ec8be987348aa7e84ec7d541f1a32205c0813da3a87c9f0974635c",
-      "tag": "henry_123-Account",
-      "selector": "0x1fe82b252013771b06c11ff79ad600b9e121feb68a807861c0e0b87372ecb6d"
+      "tag": "dojo_misty_app-Account",
+      "selector": "0x1fed2b8e1f387b325a25533f76de8897a456af9d698f4db3703efcf3f1f1e8d"
     }
   ],
   "events": []

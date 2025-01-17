@@ -20,7 +20,7 @@ import ControllerConnector from '@cartridge/connector/controller';
 import Web3 from 'web3';
 
 const ACTIONS_CONTRACT =
-    '0x049eb0b7a071807f227d2795aaa92da88b3e110048d5396ba32c7e8fb4daecad';
+    '0x01f0bfb923b688e9fb7e8177867c5dd22ff6e89a5471f18d8c45158fa8a4c717';
 
 export const Tx = () => {
     const { connectors } = useConnect();
