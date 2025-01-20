@@ -151,9 +151,10 @@ cd client
    - Set the Torii URL to:`https://api.cartridge.gg/x/{name-of-project}/torii`
    - Replace `{name-of-project}` with the name from your Slot Torii deployment.
 
-3.1. Go to `ActionsTx.tsx` and add the deployed contract address as the `ACTIONS_CONTRACT`.
+3.1. Go to `ActionsTx.tsx` in /client/src/components and add the deployed contract address as the `ACTIONS_CONTRACT`.
 
-   - get the contract address by running `sozo inspect --profile sepolia` in the contract directory
+   - get the contract address if unsure by running `sozo inspect --profile sepolia` in the contract directory
+   - there should be an item with the -actions at the end of the name that item will be the contract address
 
 4. Install dependencies and Start the React app:
 
